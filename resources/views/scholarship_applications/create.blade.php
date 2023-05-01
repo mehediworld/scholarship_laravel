@@ -20,7 +20,7 @@
         <h3>Personal Information</h3>
         <div class="form-group">
             <label for="full_name">Full Name</label>
-            <input type="text" class="form-control" id="full_name" name="full_name" required>
+            <input type="text" class="form-control" id="full_name" value="{{ old('full_name') }}" name="full_name" required>
 		
         </div>
 			@if ($errors->has('full_name'))
@@ -29,28 +29,28 @@
         <div class="form-group">
             <label for="gender">Gender</label>
             <select class="form-control" id="gender" name="gender" required>
-                <option value="">Select Gender</option>
-                <option value="male">Male</option>
-                <option value="female">Female</option>
+            <option value="">Select gender</option>
+            <option value="male" {{ old('gender') == 'male' ? 'selected' : '' }}>Male</option>
+            <option value="female" {{ old('gender') == 'female' ? 'selected' : '' }}>Female</option>
             </select>
         </div>
         <div class="form-group">
             <label for="date_of_birth">Date of Birth</label>
-            <input type="date" class="form-control" id="date_of_birth" name="date_of_birth" required>
+            <input type="date" class="form-control" id="date_of_birth" value="{{ old('date_of_birth') }}" name="date_of_birth" required>
 			@if ($errors->has('date_of_birth'))
 				<span class="text-danger">{{ $errors->first('date_of_birth') }}</span>
 			@endif
         </div>
         <div class="form-group">
             <label for="father_name">Father's Name</label>
-            <input type="text" class="form-control" id="father_name" name="father_name" required>
+            <input type="text" class="form-control" id="father_name" name="father_name" value="{{ old('father_name') }}" required>
         </div>
         <div class="form-group">
             <label for="fathers_status">Father's Status</label>
             <select class="form-control" id="fathers_status" name="fathers_status" required onchange="showFathersOccupationStatus()">
                 <option value="">Select Status</option>
-                <option value="Late">Late</option>
-                <option value="Alive">Alive</option>
+                <option value="Late" {{ old('fathers_status') == 'Late' ? 'selected' : '' }}>Late</option>
+                <option value="Alive" {{ old('fathers_status') == 'Alive' ? 'selected' : '' }}>Alive</option>
             </select>
         </div>
         <div class="form-group" id="fathers_occupation_status_container" style="display:none;">
