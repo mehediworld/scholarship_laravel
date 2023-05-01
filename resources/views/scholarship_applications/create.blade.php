@@ -432,7 +432,7 @@
 
         <!-- Upload Personal Photo -->
         <div class="form-group">
-            <label for="photo">Upload Personal Photo</label>
+            <label for="photo_path">Upload Personal Photo</label>
             <input type="file" class="form-control-file" id="photo_path" name="photo_path" required>
         </div>
 
@@ -445,7 +445,7 @@ document.getElementById('present_city').addEventListener('change', function() {
     const districtId = this.value;
 
     // Clear the thana dropdown
-    const thanaDropdown = document.getElementById('present_state');
+    const thanaDropdown = document.getElementById('present_thana');
     thanaDropdown.innerHTML = '<option value="">Select Thana</option>';
 
     if (!districtId) return;
@@ -469,7 +469,7 @@ document.getElementById('permanent_city').addEventListener('change', function() 
     const districtId1 = this.value;
 
     // Clear the thana dropdown
-    const thanaDropdown = document.getElementById('permanent_state');
+    const thanaDropdown = document.getElementById('permanent_thana');
     thanaDropdown.innerHTML = '<option value="">Select Thana</option>';
 
     if (!districtId1) return;

@@ -58,7 +58,7 @@ class ScholarshipApplicationRequest extends FormRequest
         'present_thana' => 'required|string|max:255',
         'present_post_office' => 'required|string|max:255',
         'present_postal_code' => 'required|integer',
-        'same_as_present_address' => 'nullable|boolean',
+        //'same_as_present_address' => 'boolean',
         'permanent_care_of' => 'nullable|string|max:255',
         'permanent_address_line_2' => 'nullable|string|max:255',
         'permanent_city' => 'nullable|string|max:255',
@@ -96,6 +96,7 @@ class ScholarshipApplicationRequest extends FormRequest
         'guardian_email' => 'required|string|max:255',
         'number_of_siblings' => 'required|integer',
         'other_scholarship' => 'required|string|max:255',
+        
         
         
         

@@ -1,5 +1,5 @@
 @component('mail::message')
-# Scholarship Application Submitted
+# AIBL Scholarship Application Submitted
 
 Hello {{ $scholarshipApplication->full_name }},
 
@@ -11,5 +11,5 @@ Thank you for applying!
 
 Best regards,
 
-{{ config('app.name') }}
+Al-Arafah Islami Bank Limited
 @endcomponent

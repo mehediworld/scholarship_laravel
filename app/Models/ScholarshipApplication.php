@@ -76,6 +76,7 @@ class ScholarshipApplication extends Model
         'other_scholarship',
         
         
+        
     ];
 }
 
