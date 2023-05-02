@@ -57,62 +57,62 @@
             <label for="fathers_occupation_status">Father's Occupation Status</label>
             <select class="form-control" id="fathers_occupation_status" name="fathers_occupation_status" onchange="showOccupationFields()">
                 <option value="">Select Occupation Status</option>
-                <option value="workable">Workable</option>
-                <option value="not_workable">Not Workable</option>
+                <option value="workable" {{ old('fathers_occupation_status') == 'workable' ? 'selected' : '' }}>Workable</option>
+                <option value="not_workable" {{ old('fathers_occupation_status') == 'not_workable' ? 'selected' : '' }}>Not Workable</option>
             </select>
         </div>
         <div class="form-group" id="fathers_occupation_name_container" style="display:none;">
             <label for="fathers_occupation_name">Father's Occupation Name</label>
-            <input type="text" class="form-control" id="fathers_occupation_name" name="fathers_occupation_name">
+            <input type="text" class="form-control" id="fathers_occupation_name" name="fathers_occupation_name" value="{{ old('fathers_occupation_name') }}">
         </div>
 
         <div class="form-group" id="fathers_not_workable_reason_container" style="display:none;">
             <label for="fathers_not_workable_reason">Father's Not Workable Reason</label>
-            <input type="text" class="form-control" id="fathers_not_workable_reason" name="fathers_not_workable_reason">
+            <input type="text" class="form-control" id="fathers_not_workable_reason" name="fathers_not_workable_reason" value="{{ old('fathers_not_workable_reason') }}">
         </div>
         <div class="form-group">
             <label for="mother_name">Mother's Name</label>
-            <input type="text" class="form-control" id="mother_name" name="mother_name" required>
+            <input type="text" class="form-control" id="mother_name" name="mother_name" required value="{{ old('mother_name') }}">
         </div>
         <div class="form-group">
             <label for="mothers_status">Mother's Status</label>
             <select class="form-control" id="mothers_status" name="mothers_status" required onchange="showMothersOccupationStatus()">
                 <option value="">Select Status</option>
-                <option value="Late">Late</option>
-                <option value="Alive">Alive</option>
+                <option value="Late" {{ old('mothers_status') == 'Late' ? 'selected' : '' }}>Late</option>
+                <option value="Alive" {{ old('mothers_status') == 'Alive' ? 'selected' : '' }}>Alive</option>
             </select>
         </div>
         <div class="form-group" id="mothers_occupation_status_container" style="display:none;">
             <label for="mothers_occupation_status">Mother's Occupation Status</label>
             <select class="form-control" id="mothers_occupation_status" name="mothers_occupation_status" onchange="showOccupationFields1()">
                 <option value="">Select Occupation Status</option>
-                <option value="workable">Workable</option>
-                <option value="not_workable">Not Workable</option>
+                <option value="workable" {{ old('mothers_occupation_status') == 'workable' ? 'selected' : '' }}>Workable</option>
+                <option value="not_workable" {{ old('mothers_occupation_status') == 'not_workable' ? 'selected' : '' }}>Not Workable</option>
             </select>
         </div>
         <div class="form-group" id="mothers_occupation_name_container" style="display:none;">
             <label for="mothers_occupation_name">Mother's Occupation Name</label>
-            <input type="text" class="form-control" id="mothers_occupation_name" name="mothers_occupation_name">
+            <input type="text" class="form-control" id="mothers_occupation_name" name="mothers_occupation_name" value="{{ old('mothers_occupation_name') }}">
         </div>
 
         <div class="form-group" id="mothers_not_workable_reason_container" style="display:none;">
             <label for="mothers_not_workable_reason">Mother's Not Workable Reason</label>
-            <input type="text" class="form-control" id="mothers_not_workable_reason" name="mothers_not_workable_reason">
+            <input type="text" class="form-control" id="mothers_not_workable_reason" name="mothers_not_workable_reason" value="{{ old('mothers_not_workable_reason') }}">
         </div>
         <div class="form-group">
             <label for="monthly_income">Parent's Monthly Income</label>
-            <input type="number" class="form-control" id="monthly_income" name="monthly_income" required>
+            <input type="number" class="form-control" id="monthly_income" name="monthly_income" required value="{{ old('monthly_income') }}">
         </div>
         <div class="form-group">
             <label for="email">Email</label>
-            <input type="email" class="form-control" id="email" name="email" required>
+            <input type="email" class="form-control" id="email" name="email" required value="{{ old('email') }}">
 			@if ($errors->has('email'))
 				<span class="text-danger">{{ $errors->first('email') }}</span>
 			@endif
         </div>
         <div class="form-group">
             <label for="phone_number">Phone Number</label>
-            <input type="tel" class="form-control" id="phone_number" name="phone_number" required>
+            <input type="tel" class="form-control" id="phone_number" name="phone_number" required value="{{ old('phone_number') }}">
 			@if ($errors->has('phone_number'))
 				<span class="text-danger">{{ $errors->first('phone_number') }}</span>
 			@endif
@@ -123,13 +123,13 @@
             <label for="are_physically_disable">Are you Physically Disable?</label>
             <select class="form-control" id="are_physically_disable" name="are_physically_disable" required>
                 <option value="">Select</option>
-                <option value="yes">Yes</option>
-                <option value="no">No</option>
+                <option value="yes" {{ old('are_physically_disable') == 'yes' ? 'selected' : '' }}>Yes</option>
+                <option value="no" {{ old('are_physically_disable') == 'no' ? 'selected' : '' }}>No</option>
             </select>
         </div>
         <div id="disability_type_container" class="form-group" style="display: none;">
             <label for="disability_type">Type of Disability</label>
-            <input type="text" class="form-control" id="disability_type" name="disability_type" required>
+            <input type="text" class="form-control" id="disability_type" name="disability_type" value="{{ old('disability_type') }}">
         </div>
         <!-- Add other input fields here -->
 
@@ -137,11 +137,11 @@
         <h3>Present Address</h3>
         <div class="form-group">
             <label for="present_care_of">Care Of</label>
-            <input type="text" class="form-control" id="present_care_of" name="present_care_of" required>
+            <input type="text" class="form-control" id="present_care_of" name="present_care_of" required value="{{ old('present_care_of') }}">
         </div>
         <div class="form-group">
             <label for="present_address_line_2">Village/Town/Road/House/Flat</label>
-            <input type="text" class="form-control" id="present_address_line_2" name="present_address_line_2">
+            <input type="text" class="form-control" id="present_address_line_2" name="present_address_line_2" value="{{ old('present_address_line_2') }}">
         </div>
         <div class="form-group">
             <label for="present_city">District</label>
@@ -162,11 +162,11 @@
         </div>
         <div class="form-group">
             <label for="present_post_office">Post Office</label>
-            <input type="text" class="form-control" id="present_post_office" name="present_post_office" required>
+            <input type="text" class="form-control" id="present_post_office" name="present_post_office" required value="{{ old('present_post_office') }}">
         </div>
         <div class="form-group">
             <label for="present_postal_code">Postal Code</label>
-            <input type="text" class="form-control" id="present_postal_code" name="present_postal_code" required>
+            <input type="text" class="form-control" id="present_postal_code" name="present_postal_code" required value="{{ old('present_postal_code') }}">
         </div>
 
         <!-- Permanent Address -->
@@ -180,11 +180,11 @@
         <div class="permanent-address-fields">
         <div class="form-group">
             <label for="permanent_care_of">Care of</label>
-            <input type="text" class="form-control" id="permanent_care_of" name="permanent_care_of">
+            <input type="text" class="form-control" id="permanent_care_of" name="permanent_care_of" value="{{ old('permanent_care_of') }}">
         </div>
         <div class="form-group">
             <label for="permanent_address_line_2">Village/Town/Road/House/Flat</label>
-            <input type="text" class="form-control" id="permanent_address_line_2" name="permanent_address_line_2">
+            <input type="text" class="form-control" id="permanent_address_line_2" name="permanent_address_line_2" value="{{ old('permanent_address_line_2') }}">
         </div>
         <div class="form-group">
             <label for="permanent_city">District</label>
@@ -206,11 +206,11 @@
         
         <div class="form-group">
             <label for="permanent_post_office">Post Office</label>
-            <input type="text" class="form-control" id="permanent_post_office" name="permanent_post_office" required>
+            <input type="text" class="form-control" id="permanent_post_office" name="permanent_post_office" required value="{{ old('permanent_post_office') }}">
         </div>
         <div class="form-group">
             <label for="permanent_postal_code">Postal Code</label>
-            <input type="text" class="form-control" id="permanent_postal_code" name="permanent_postal_code" required>
+            <input type="text" class="form-control" id="permanent_postal_code" name="permanent_postal_code" required value="{{ old('permanent_postal_code') }}">
         </div>
         </div>
 
@@ -252,28 +252,28 @@
         
         <div class="form-group">
             <label for="o_gpa_with_4th">GPA With 4th subject</label>
-            <input type="text" class="form-control" id="o_gpa_with_4th" name="o_gpa_with_4th" required>
+            <input type="text" class="form-control" id="o_gpa_with_4th" name="o_gpa_with_4th" required value="{{ old('o_gpa_with_4th') }}">
         </div>
         <div class="form-group">
             <label for="o_gpa_without_4th">GPA Without 4th subject</label>
-            <input type="text" class="form-control" id="o_gpa_without_4th" name="o_gpa_without_4th" required>
+            <input type="text" class="form-control" id="o_gpa_without_4th" name="o_gpa_without_4th" required value="{{ old('o_gpa_without_4th') }}">
         </div>
         <div class="form-group">
             <label for="o_total_marks">Total Marks</label>
-            <input type="text" class="form-control" id="o_total_marks" name="o_total_marks" required>
+            <input type="text" class="form-control" id="o_total_marks" name="o_total_marks" required value="{{ old('o_total_marks') }}">
         </div>
         <div class="form-group">
             <label for="o_roll">Roll</label>
-            <input type="text" class="form-control" id="o_roll" name="o_roll" required>
+            <input type="text" class="form-control" id="o_roll" name="o_roll" required value="{{ old('o_roll') }}">
         </div>
         <div class="form-group">
             <label for="o_registration_no">Registration No</label>
-            <input type="text" class="form-control" id="o_registration_no" name="o_registration_no" required>
+            <input type="text" class="form-control" id="o_registration_no" name="o_registration_no" required value="{{ old('o_registration_no') }}">
         </div>
         
         <div class="form-group">
             <label for="o_level_passing_year">Passing Year</label>
-            <input type="number" class="form-control" id="o_level_passing_year" name="o_level_passing_year" required>
+            <input type="number" class="form-control" id="o_level_passing_year" name="o_level_passing_year" required value="{{ old('o_level_passing_year') }}">
         </div>
 
         <h4>HSC Education</h4>
@@ -310,36 +310,36 @@
         </div>
         <div class="form-group">
             <label for="a_gpa_with_4th">GPA With 4th subject</label>
-            <input type="text" class="form-control" id="a_gpa_with_4th" name="a_gpa_with_4th" required>
+            <input type="text" class="form-control" id="a_gpa_with_4th" name="a_gpa_with_4th" required value="{{ old('a_gpa_with_4th') }}">
         </div>
         <div class="form-group">
             <label for="a_gpa_without_4th">GPA Without 4th subject</label>
-            <input type="text" class="form-control" id="a_gpa_without_4th" name="a_gpa_without_4th" required>
+            <input type="text" class="form-control" id="a_gpa_without_4th" name="a_gpa_without_4th" required value="{{ old('a_gpa_without_4th') }}">
         </div>
         <div class="form-group">
             <label for="a_total_marks">Total Marks</label>
-            <input type="text" class="form-control" id="a_total_marks" name="a_total_marks" required>
+            <input type="text" class="form-control" id="a_total_marks" name="a_total_marks" required value="{{ old('a_total_marks') }}">
         </div>
         <div class="form-group">
             <label for="a_roll">Roll</label>
-            <input type="text" class="form-control" id="a_roll" name="a_roll" required>
+            <input type="text" class="form-control" id="a_roll" name="a_roll" required value="{{ old('a_roll') }}">
         </div>
         <div class="form-group">
             <label for="a_registration_no">Registration No</label>
-            <input type="text" class="form-control" id="a_registration_no" name="a_registration_no" required>
+            <input type="text" class="form-control" id="a_registration_no" name="a_registration_no" required value="{{ old('a_registration_no') }}">
         </div>
        
         <div class="form-group">
             <label for="a_level_passing_year">Passing Year</label>
-            <input type="number" class="form-control" id="a_level_passing_year" name="a_level_passing_year" required>
+            <input type="number" class="form-control" id="a_level_passing_year" name="a_level_passing_year" required value="{{ old('a_level_passing_year') }}">
         </div>
 
         <div class="form-group">
             <label for="location_of_college">Location of College/Madrasah/Vocational(HSC Equivalent Level)</label>
             <select class="form-control" id="location_of_college" name="location_of_college" required>
                 <option value="">Select</option>
-                <option value="Inside City Corporation">Inside City Corporation</option>
-                <option value="Outside City Corporation">Outside City Corporation</option>
+                <option value="Inside_City_Corporation" {{ old('location_of_college') == 'Inside_City_Corporation' ? 'selected' : '' }}>Inside city Corporation</option>
+                <option value="Outside_City_Corporation" {{ old('location_of_college') == 'Outside_City_Corporation' ? 'selected' : '' }}>Outside city Corporation</option>
             </select>
         </div>
 
@@ -368,7 +368,7 @@
         </div>
         <div class="form-group" id="other_subject_container" style="display:none;">
             <label for="other_subject">Other Subject Name</label>
-            <input type="text" class="form-control" id="other_subject" name="other_subject">
+            <input type="text" class="form-control" id="other_subject" name="other_subject" value="{{ old('other_subject') }}">
         </div>
         <div class="form-group">
             <label for="institute_name">Institute Name</label>
@@ -382,7 +382,7 @@
         </div>
         <div class="form-group" id="other_institute_container" style="display:none;">
             <label for="other_institute">Other Institute Name</label>
-            <input type="text" class="form-control" id="other_institute" name="other_institute">
+            <input type="text" class="form-control" id="other_institute" name="other_institute" value="{{ old('other_institute') }}">
         </div>
 
         
@@ -392,30 +392,30 @@
         
         <div class="form-group">
             <label for="guardian_name">Name</label>
-            <input type="text" class="form-control" id="guardian_name" name="guardian_name" required>
+            <input type="text" class="form-control" id="guardian_name" name="guardian_name" required value="{{ old('guardian_name') }}">
         </div>
         <div class="form-group">
             <label for="relation_with_applicant">Relation With Applicant</label>
-            <input type="text" class="form-control" id="relation_with_applicant" name="relation_with_applicant" required>
+            <input type="text" class="form-control" id="relation_with_applicant" name="relation_with_applicant" required value="{{ old('relation_with_applicant') }}">
         </div>
         <div class="form-group">
             <label for="guardian_profession">Profession</label>
-            <input type="text" class="form-control" id="guardian_profession" name="guardian_profession" required>
+            <input type="text" class="form-control" id="guardian_profession" name="guardian_profession" required value="{{ old('guardian_profession') }}">
         </div>
         <div class="form-group">
             <label for="guardian_mobile">Mobile</label>
-            <input type="number" class="form-control" id="guardian_mobile" name="guardian_mobile" required>
+            <input type="number" class="form-control" id="guardian_mobile" name="guardian_mobile" required value="{{ old('guardian_mobile') }}">
         </div>
         <div class="form-group">
             <label for="guardian_email">Email</label>
-            <input type="email" class="form-control" id="guardian_email" name="guardian_email" required>
+            <input type="email" class="form-control" id="guardian_email" name="guardian_email" required value="{{ old('guardian_email') }}">
         </div>
 
         <!-- Brother's / Sister Information -->
         <h3>Brother's / Sister's Information</h3>
         <div class="form-group">
             <label for="number_of_siblings">Number of Siblings</label>
-            <input type="text" class="form-control" id="number_of_siblings" name="number_of_siblings" required>
+            <input type="text" class="form-control" id="number_of_siblings" name="number_of_siblings" required value="{{ old('number_of_siblings') }}">
         </div>
 
         <!-- Brother's / Sister Information -->
@@ -424,8 +424,8 @@
             <label for="other_scholarship">Did you avail any Other Scholarship(Except Govt. Scholarship)</label>
             <select class="form-control" id="other_scholarship" name="other_scholarship" required>
                 <option value="">Select</option>
-                <option value="yes">Yes</option>
-                <option value="no">No</option>
+                <option value="yes" {{ old('other_scholarship') == 'yes' ? 'selected' : '' }}>Yes</option>
+                <option value="no" {{ old('other_scholarship') == 'no' ? 'selected' : '' }}>No</option>
             </select>
         </div>
         
@@ -491,14 +491,14 @@ document.getElementById('permanent_city').addEventListener('change', function() 
 <script>
   document.getElementById('are_physically_disable').addEventListener('change', function() {
     const disabilityTypeContainer = document.getElementById('disability_type_container');
-    if (this.value === 'yes') {
+    //if (this.value === 'yes') {
       // Show the 'type of disability' input field
-      disabilityTypeContainer.style.display = 'block';
-      document.getElementById('disability_type').required = true;
-    } else {
+     // disabilityTypeContainer.style.display = 'block';
+      //document.getElementById('disability_type').required = true;
+    //} else {
       // Hide the 'type of disability' input field
-      disabilityTypeContainer.style.display = 'none';
-      document.getElementById('disability_type').required = false;
+     // disabilityTypeContainer.style.display = 'none';
+      //document.getElementById('disability_type').required = false;
     }
   });
 </script>
