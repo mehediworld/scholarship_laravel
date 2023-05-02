@@ -491,14 +491,14 @@ document.getElementById('permanent_city').addEventListener('change', function() 
 <script>
   document.getElementById('are_physically_disable').addEventListener('change', function() {
     const disabilityTypeContainer = document.getElementById('disability_type_container');
-    //if (this.value === 'yes') {
+    if (this.value === 'yes') {
       // Show the 'type of disability' input field
-     // disabilityTypeContainer.style.display = 'block';
-      //document.getElementById('disability_type').required = true;
-    //} else {
+     disabilityTypeContainer.style.display = 'block';
+     document.getElementById('disability_type').required = true;
+    } else {
       // Hide the 'type of disability' input field
-     // disabilityTypeContainer.style.display = 'none';
-      //document.getElementById('disability_type').required = false;
+      disabilityTypeContainer.style.display = 'none';
+      document.getElementById('disability_type').required = false;
     }
   });
 </script>
