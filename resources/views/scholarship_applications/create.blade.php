@@ -148,10 +148,14 @@
             <select class="form-control" name="present_city" id="present_city" aria-label="Present Address District" required>
                                 <option value="">Select A District</option>
                                 @foreach($districts as $district)
-                                <option value="{{ $district->DistrictID }}">{{$district->DistrictName}}</option>
+                                <option value="{{ $district->DistrictID }}" {{ old('present_city') == $district->DistrictID ? 'selected' : '' }}>
+                                    {{ $district->DistrictName }}
+                                </option>
                                 @endforeach
                                
             </select>
+            
+
         </div>
         <div class="form-group">
             <label for="present_thana">Thana</label>
@@ -191,7 +195,9 @@
             <select class="form-control" name="permanent_city" id="permanent_city" aria-label="Permanent Address District">
                                 <option value="">Select A District</option>
                                 @foreach($districts as $district)
-                                <option value="{{ $district->DistrictID }}">{{$district->DistrictName}}</option>
+                                <option value="{{ $district->DistrictID }}" {{ old('permanent_city') == $district->DistrictID ? 'selected' : '' }}>
+                                    {{ $district->DistrictName }}
+                                </option>
                                 @endforeach
                                
             </select>
@@ -222,8 +228,11 @@
             <label for="o_level_degree">Degree Name</label>
             <select class="form-control" name="o_level_degree" id="o_level_degree" required>
                                 <option value="">Select Degree</option>
+                                
                                 @foreach($sscDegrees as $sscDegree)
-                                <option value="{{ $sscDegree->DEGREENAME }}">{{$sscDegree->DEGREENAME}}</option>
+                                <option value="{{ $sscDegree->DEGREENAME }}" {{ old('o_level_degree') == $sscDegree->DEGREENAME ? 'selected' : '' }}>
+                                    {{ $sscDegree->DEGREENAME }}
+                                </option>
                                 @endforeach
                                
             </select>
@@ -233,7 +242,9 @@
             <select class="form-control" name="o_level_group" id="o_level_group" required>
                                 <option value="">Select Group</option>
                                 @foreach($sscGroups as $sscGroup)
-                                <option value="{{ $sscGroup->EDUGROUPNAME }}">{{$sscGroup->EDUGROUPNAME}}</option>
+                                <option value="{{ $sscGroup->EDUGROUPNAME }}" {{ old('o_level_group') == $sscGroup->EDUGROUPNAME ? 'selected' : '' }}>
+                                    {{ $sscGroup->EDUGROUPNAME }}
+                                </option>
                                 @endforeach
                                
             </select>
@@ -243,7 +254,9 @@
             <select class="form-control" name="o_level_board_name" id="o_level_board_name" required>
                                 <option value="">Select Board</option>
                                 @foreach($sscBoards as $sscBoard)
-                                <option value="{{ $sscBoard->BOARDNAME }}">{{$sscBoard->BOARDNAME}}</option>
+                                <option value="{{ $sscBoard->BOARDNAME }}" {{ old('o_level_board_name') == $sscBoard->BOARDNAME ? 'selected' : '' }}>
+                                    {{ $sscBoard->BOARDNAME }}
+                                </option>
                                 @endforeach
                                
             </select>
@@ -283,7 +296,9 @@
             <select class="form-control" name="a_level_degree" id="a_level_degree" required>
                                 <option value="">Select Degree</option>
                                 @foreach($hscDegrees as $hscDegree)
-                                <option value="{{ $hscDegree->DEGREENAME }}">{{$hscDegree->DEGREENAME}}</option>
+                                <option value="{{ $hscDegree->DEGREENAME }}" {{ old('a_level_degree') == $hscDegree->DEGREENAME ? 'selected' : '' }}>
+                                    {{ $hscDegree->DEGREENAME }}
+                                </option>
                                 @endforeach
                                
             </select>
@@ -293,7 +308,9 @@
             <select class="form-control" name="a_level_group" id="a_level_group" required>
                                 <option value="">Select Group</option>
                                 @foreach($sscGroups as $sscGroup)
-                                <option value="{{ $sscGroup->EDUGROUPNAME }}">{{$sscGroup->EDUGROUPNAME}}</option>
+                                <option value="{{ $sscGroup->EDUGROUPNAME }}" {{ old('a_level_group') == $sscGroup->EDUGROUPNAME ? 'selected' : '' }}>
+                                    {{ $sscGroup->EDUGROUPNAME }}
+                                </option>
                                 @endforeach
                                
             </select>
@@ -303,7 +320,9 @@
             <select class="form-control" name="a_level_board_name" id="a_level_board_name" required>
                                 <option value="">Select Board</option>
                                 @foreach($sscBoards as $sscBoard)
-                                <option value="{{ $sscBoard->BOARDNAME }}">{{$sscBoard->BOARDNAME}}</option>
+                                <option value="{{ $sscBoard->BOARDNAME }}" {{ old('a_level_group') == $sscBoard->BOARDNAME ? 'selected' : '' }}>
+                                    {{ $sscBoard->BOARDNAME }}
+                                </option>
                                 @endforeach
                                
             </select>
@@ -350,7 +369,9 @@
             <select class="form-control" name="degree_name" id="degree_name" required>
                                 <option value="">Select Degree</option>
                                 @foreach($honorsDegrees as $honorsDegree)
-                                <option value="{{ $honorsDegree->DEGREENAME }}">{{$honorsDegree->DEGREENAME}}</option>
+                                <option value="{{ $honorsDegree->DEGREENAME }}" {{ old('degree_name') == $honorsDegree->DEGREENAME ? 'selected' : '' }}>
+                                    {{ $honorsDegree->DEGREENAME }}
+                                </option>
                                 @endforeach
                                
             </select>
@@ -361,7 +382,9 @@
             <select class="form-control" name="major" id="major" required>
                                 <option value="">Select Subject</option>
                                 @foreach($majors as $major)
-                                <option value="{{ $major->SUBJECTNAME }}">{{$major->SUBJECTNAME}}</option>
+                                <option value="{{ $major->SUBJECTNAME }}" {{ old('major') == $major->SUBJECTNAME ? 'selected' : '' }}>
+                                    {{ $major->SUBJECTNAME }}
+                                </option>
                                 @endforeach
                                
             </select>
@@ -375,7 +398,9 @@
             <select class="form-control" name="institute_name" id="institute_name" required>
                                 <option value="">Select Institute</option>
                                 @foreach($universities as $university)
-                                <option value="{{ $university->UNIVERSITYNAME }}">{{$university->UNIVERSITYNAME}}</option>
+                                <option value="{{ $university->UNIVERSITYNAME }}" {{ old('institute_name') == $university->UNIVERSITYNAME ? 'selected' : '' }}>
+                                    {{ $university->UNIVERSITYNAME }}
+                                </option>
                                 @endforeach
                                
             </select>
