@@ -77,7 +77,7 @@ return new class extends Migration
 			$table->string('guardian_email');
 			$table->integer('number_of_siblings');
 			$table->string('other_scholarship');
-			$table->string('photo_path')->default('');
+			$table->string('photo_path');
 			$table->timestamps();
         });
     }

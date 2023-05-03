@@ -320,7 +320,7 @@
             <select class="form-control" name="a_level_board_name" id="a_level_board_name" required>
                                 <option value="">Select Board</option>
                                 @foreach($sscBoards as $sscBoard)
-                                <option value="{{ $sscBoard->BOARDNAME }}" {{ old('a_level_group') == $sscBoard->BOARDNAME ? 'selected' : '' }}>
+                                <option value="{{ $sscBoard->BOARDNAME }}" {{ old('a_level_board_name') == $sscBoard->BOARDNAME ? 'selected' : '' }}>
                                     {{ $sscBoard->BOARDNAME }}
                                 </option>
                                 @endforeach
@@ -458,7 +458,12 @@
         <!-- Upload Personal Photo -->
         <div class="form-group">
             <label for="photo_path">Upload Personal Photo</label>
-            <input type="file" class="form-control-file" id="photo_path" name="photo_path" required>
+            <input type="file" class="form-control-file" id="photo_path" name="photo_path" required accept="image/*" onchange="previewImage(event)">
+            
+        </div>
+        <div class="form-group">
+            <label>Image Preview:</label>
+            <img id="image-preview" src="#" alt="Image Preview" style="width: 150px; height: 150px; display: none;">
         </div>
 
         <button type="submit" class="btn btn-primary">Submit</button>
@@ -466,53 +471,122 @@
 </div>
 <!-- Add this before the closing </body> tag -->
 <script>
-document.getElementById('present_city').addEventListener('change', function() {
-    const districtId = this.value;
+//document.getElementById('present_city').addEventListener('change', function() {
+    //const districtId = this.value;
 
     // Clear the thana dropdown
-    const thanaDropdown = document.getElementById('present_thana');
-    thanaDropdown.innerHTML = '<option value="">Select Thana</option>';
+    //const thanaDropdown = document.getElementById('present_thana');
+    //thanaDropdown.innerHTML = '<option value="">Select Thana</option>';
 
-    if (!districtId) return;
+    //if (!districtId) return;
 
     // Fetch related thanas for the selected district
     // Replace '/thanas/' with the appropriate route in your application
-    fetch('/thanas/' + districtId)
-        .then(response => response.json())
-        .then(thanas => {
-            thanas.forEach(thana => {
-                const option = document.createElement('option');
-                option.value = thana.THANAID;
-                option.text = thana.THANANAME;
-                thanaDropdown.add(option);
-            });
+   // fetch('/thanas/' + districtId)
+       // .then(response => response.json())
+       // .then(thanas => {
+           // thanas.forEach(thana => {
+               // const option = document.createElement('option');
+              //  option.value = thana.THANANAME;
+              //  option.text = thana.THANANAME;
+              //  thanaDropdown.add(option);
+           // });
+        //});
+//});
+function populateThana(districtId, oldThana) {
+    let thanaSelect = document.getElementById("present_thana");
+    thanaSelect.innerHTML = '';
+
+    // Replace the URL below with the appropriate route for fetching the Thanas based on the selected District.
+    fetch(`/thanas/${districtId}`)
+    .then(response => response.json())
+    .then(thanas => {
+        thanaSelect.innerHTML = '<option value="">Select Thana</option>';
+        thanas.forEach(thana => {
+            let option = document.createElement("option");
+            option.value = thana.THANAID;
+            option.text = thana.THANANAME;
+            if (oldThana && oldThana == thana.THANAID) {
+                option.selected = true;
+            }
+            thanaSelect.add(option);
         });
+    })
+    .catch(error => console.error(error));
+}
+document.getElementById("present_city").addEventListener("change", function () {
+    let districtId = this.value;
+    let oldThana = "{{ old('present_thana') }}";
+    populateThana(districtId, oldThana);
 });
+window.addEventListener("load", function () {
+    let oldDistrict = "{{ old('present_city') }}";
+    let oldThana = "{{ old('present_thana') }}";
+    if (oldDistrict) {
+        populateThana(oldDistrict, oldThana);
+    }
+});
+
 </script>
 <script>
-document.getElementById('permanent_city').addEventListener('change', function() {
-    const districtId1 = this.value;
+//document.getElementById('present_city').addEventListener('change', function() {
+    //const districtId = this.value;
 
     // Clear the thana dropdown
-    const thanaDropdown = document.getElementById('permanent_thana');
-    thanaDropdown.innerHTML = '<option value="">Select Thana</option>';
+    //const thanaDropdown = document.getElementById('present_thana');
+    //thanaDropdown.innerHTML = '<option value="">Select Thana</option>';
 
-    if (!districtId1) return;
+    //if (!districtId) return;
 
     // Fetch related thanas for the selected district
     // Replace '/thanas/' with the appropriate route in your application
-    fetch('/thanas/' + districtId1)
-        .then(response => response.json())
-        .then(thanas => {
-            thanas.forEach(thana => {
-                const option = document.createElement('option');
-                option.value = thana.THANAID;
-                option.text = thana.THANANAME;
-                thanaDropdown.add(option);
-            });
+   // fetch('/thanas/' + districtId)
+       // .then(response => response.json())
+       // .then(thanas => {
+           // thanas.forEach(thana => {
+               // const option = document.createElement('option');
+              //  option.value = thana.THANANAME;
+              //  option.text = thana.THANANAME;
+              //  thanaDropdown.add(option);
+           // });
+        //});
+//});
+function populateThanap(districtId, oldThana) {
+    let thanaSelect = document.getElementById("permanent_thana");
+    thanaSelect.innerHTML = '';
+
+    // Replace the URL below with the appropriate route for fetching the Thanas based on the selected District.
+    fetch(`/thanas/${districtId}`)
+    .then(response => response.json())
+    .then(thanas => {
+        thanaSelect.innerHTML = '<option value="">Select Thana</option>';
+        thanas.forEach(thana => {
+            let option = document.createElement("option");
+            option.value = thana.THANAID;
+            option.text = thana.THANANAME;
+            if (oldThana && oldThana == thana.THANAID) {
+                option.selected = true;
+            }
+            thanaSelect.add(option);
         });
+    })
+    .catch(error => console.error(error));
+}
+document.getElementById("permanent_city").addEventListener("change", function () {
+    let districtId = this.value;
+    let oldThana = "{{ old('permanent_thana') }}";
+    populateThanap(districtId, oldThana);
 });
+window.addEventListener("load", function () {
+    let oldDistrict = "{{ old('permanent_city') }}";
+    let oldThana = "{{ old('permanent_thana') }}";
+    if (oldDistrict) {
+        populateThanap(oldDistrict, oldThana);
+    }
+});
+
 </script>
+
 <script>
   document.getElementById('are_physically_disable').addEventListener('change', function() {
     const disabilityTypeContainer = document.getElementById('disability_type_container');
@@ -719,6 +793,17 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+</script>
+<script>
+function previewImage(event) {
+    const reader = new FileReader();
+    reader.onload = function () {
+        const output = document.getElementById('image-preview');
+        output.src = reader.result;
+        output.style.display = 'block';
+    };
+    reader.readAsDataURL(event.target.files[0]);
+}
 </script>
 
 @endsection

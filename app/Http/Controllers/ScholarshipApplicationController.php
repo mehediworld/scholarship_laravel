@@ -51,11 +51,14 @@ class ScholarshipApplicationController extends Controller
 	{
 		$validatedData = $request->validated();
 		// Handle file upload if necessary
-		if ($request->hasFile('personal_photo')) {
-        $photo = $request->file('personal_photo');
-        $photo_name = time() . '_' . $photo->getClientOriginalName();
-        $photo_path = $photo->storeAs('public/personal_photos', $photo_name);
-    }
+        if ($request->hasFile('photo_path')) {
+            $photo = $request->file('photo_path');
+            $photo_name = time() . '_' . $photo->getClientOriginalName();
+            $photo_path = $photo->storeAs('personal_photos', $photo_name, 'public');
+    
+            // Update the validated data with the stored photo path
+            $validatedData['photo_path'] = 'storage/personal_photos/' . $photo_name;
+        }
 	     // Create a new ScholarshipApplication instance
     $scholarshipApplication = new ScholarshipApplication;
 

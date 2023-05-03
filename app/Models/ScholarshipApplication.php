@@ -74,7 +74,7 @@ class ScholarshipApplication extends Model
         'guardian_email',
         'number_of_siblings',
         'other_scholarship',
-        
+        'photo_path',
         
         
     ];

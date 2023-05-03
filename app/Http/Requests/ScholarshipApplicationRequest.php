@@ -96,7 +96,7 @@ class ScholarshipApplicationRequest extends FormRequest
         'guardian_email' => 'required|string|max:255',
         'number_of_siblings' => 'required|integer',
         'other_scholarship' => 'required|string|max:255',
-        
+        'photo_path' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:1024',
         
         
         
