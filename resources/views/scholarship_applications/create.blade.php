@@ -176,7 +176,7 @@
         <!-- Permanent Address -->
         <h3>Permanent Address</h3>
         <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="same_as_present_address" name="same_as_present_address">
+            <input class="form-check-input" type="checkbox" id="same_as_present_address" name="same_as_present_address">
             <label class="form-check-label" for="same_as_present_address">
                 Same as Present Address
             </label>
@@ -465,10 +465,28 @@
             <label>Image Preview:</label>
             <img id="image-preview" src="#" alt="Image Preview" style="width: 150px; height: 150px; display: none;">
         </div>
-
+        <button type="button" class="btn btn-warning" id="previewBtn">Preview</button>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 </div>
+<div class="modal fade" id="previewModal" tabindex="-1" aria-labelledby="previewModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="previewModalLabel">Form Preview</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div id="previewContent"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Submit Form</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- Add this before the closing </body> tag -->
 <script>
 //document.getElementById('present_city').addEventListener('change', function() {
@@ -804,6 +822,75 @@ function previewImage(event) {
     };
     reader.readAsDataURL(event.target.files[0]);
 }
+</script>
+<script>
+    document.getElementById('previewBtn').addEventListener('click', function() {
+  // Get form data
+  const name = document.getElementById('full_name').value;
+  const email = document.getElementById('email').value;
+  const gender = document.getElementById('gender').value;
+  const date_of_birth = document.getElementById('date_of_birth').value;
+  const father_name = document.getElementById('father_name').value;
+  const fathers_status = document.getElementById('fathers_status').value;
+  const fathers_occupation_status = document.getElementById('fathers_occupation_status').value;
+  const fathers_occupation_name = document.getElementById('fathers_occupation_name').value;
+  const fathers_not_workable_reason = document.getElementById('fathers_not_workable_reason').value;
+  const mother_name = document.getElementById('mother_name').value;
+  const mothers_status = document.getElementById('mothers_status').value;
+  const mothers_occupation_status = document.getElementById('mothers_occupation_status').value;
+  const mothers_occupation_name = document.getElementById('mothers_occupation_name').value;
+  const mothers_not_workable_reason = document.getElementById('mothers_not_workable_reason').value;
+  const monthly_income = document.getElementById('monthly_income').value;
+  const phone_number = document.getElementById('phone_number').value;
+  const are_physically_disable = document.getElementById('are_physically_disable').value;
+  const disability_type = document.getElementById('disability_type').value;
+  const present_care_of = document.getElementById('present_care_of').value;
+  const present_address_line_2 = document.getElementById('present_address_line_2').value;
+  const present_city = document.getElementById('present_city').value;
+  const present_thana = document.getElementById('present_thana').value;
+  const present_post_office = document.getElementById('present_post_office').value;
+  const present_postal_code = document.getElementById('present_postal_code').value;
+  const same_as_present_address = document.getElementById('same_as_present_address').value;
+  // Generate preview content
+  const previewContent = `
+    <h2>Personal Information</h2>
+    <p><strong>Name:</strong> ${name}</p>
+    <p><strong>Email:</strong> ${email}</p>
+    <p><strong>Gender:</strong> ${gender}</p>
+    <p><strong>Date of Birth:</strong> ${date_of_birth}</p>
+    <p><strong>Father Name:</strong> ${father_name}</p>
+    <p><strong>Father's Status:</strong> ${fathers_status}</p>
+    <p><strong>Father's Occupation Status:</strong> ${fathers_occupation_status}</p>
+    <p><strong>Father's Occupation Name:</strong> ${fathers_occupation_name}</p>
+    <p><strong>Father's Not Workable Reason:</strong> ${fathers_not_workable_reason}</p>
+    <p><strong>Mother Name:</strong> ${mother_name}</p>
+    <p><strong>Mother's Status:</strong> ${mothers_status}</p>
+    <p><strong>Mother's Occupation Status:</strong> ${mothers_occupation_status}</p>
+    <p><strong>Mother's Occupation Name:</strong> ${mothers_occupation_name}</p>
+    <p><strong>Mother's Not Workable Reason:</strong> ${mothers_not_workable_reason}</p>
+    <p><strong>Parent's Mothly Income:</strong> ${monthly_income}</p>
+    <p><strong>phone_number:</strong> ${phone_number}</p>
+    <p><strong>are_physically_disable:</strong> ${are_physically_disable}</p>
+    <p><strong>disability_type:</strong> ${disability_type}</p>
+    <h2>Present Address</h2>
+    <p><strong>present care of:</strong> ${present_care_of}</p>
+    <p><strong>Village/Town/Road/House/Flat:</strong> ${present_address_line_2}</p>
+    <p><strong>District:</strong> ${present_city}</p>
+    <p><strong>Parent's Thana:</strong> ${present_thana}</p>
+    <p><strong>present_post_office:</strong> ${present_post_office}</p>
+    <p><strong>present_postal_code:</strong> ${present_postal_code}</p>
+    <p><strong>same_as_present_address:</strong> ${same_as_present_address}</p>
+
+  `;
+
+  // Insert preview content into the modal
+  document.getElementById('previewContent').innerHTML = previewContent;
+
+  // Open the modal
+  const previewModal = new bootstrap.Modal(document.getElementById('previewModal'));
+  previewModal.show();
+});
+
 </script>
 
 @endsection
