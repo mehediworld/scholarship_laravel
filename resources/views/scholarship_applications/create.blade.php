@@ -176,11 +176,10 @@
         <!-- Permanent Address -->
         <h3>Permanent Address</h3>
         <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="yes" id="same_as_present_address" name="same_as_present_address">
+            <input class="form-check-input" type="checkbox" value="1" id="same_as_present_address" name="same_as_present_address">
             <label class="form-check-label" for="same_as_present_address">
                 Same as Present Address
             </label>
-            <input type="hidden" name="same_as_present_address" value="no">
         </div>
         <div class="permanent-address-fields">
         <div class="form-group">

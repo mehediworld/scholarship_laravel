@@ -50,6 +50,9 @@ class ScholarshipApplicationController extends Controller
     public function store(ScholarshipApplicationRequest $request)
 	{
 		$validatedData = $request->validated();
+
+        // Handle the same_as_present_address checkbox
+        $validatedData['same_as_present_address'] = $request->input('same_as_present_address', false) ? 1 : 0;
 		// Handle file upload if necessary
         if ($request->hasFile('photo_path')) {
             $photo = $request->file('photo_path');
