@@ -14,7 +14,7 @@
     </div>
 	@endif
 	
-    <form action="{{ route('scholarship_applications.store') }}" method="POST" enctype="multipart/form-data">
+    <form id="scholarshipForm" action="{{ route('scholarship_applications.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <!-- Personal Information -->
         <h3>Personal Information</h3>
@@ -478,10 +478,11 @@
       </div>
       <div class="modal-body">
         <div id="previewContent"></div>
+        <div id="imagePreview"></div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary">Submit Form</button>
+        <button type="submit" class="btn btn-primary" id="submitFromModal">Submit Form</button>
       </div>
     </div>
   </div>
@@ -824,7 +825,7 @@ function previewImage(event) {
 }
 </script>
 <script>
-    document.getElementById('previewBtn').addEventListener('click', function() {
+  document.getElementById('previewBtn').addEventListener('click', function() {
   // Get form data
   const name = document.getElementById('full_name').value;
   const email = document.getElementById('email').value;
@@ -851,6 +852,45 @@ function previewImage(event) {
   const present_post_office = document.getElementById('present_post_office').value;
   const present_postal_code = document.getElementById('present_postal_code').value;
   const same_as_present_address = document.getElementById('same_as_present_address').value;
+  const permanent_care_of = document.getElementById('permanent_care_of').value;
+  const permanent_address_line_2 = document.getElementById('permanent_address_line_2').value;
+  const permanent_city = document.getElementById('permanent_city').value;
+  const permanent_thana = document.getElementById('permanent_thana').value;
+  const permanent_post_office = document.getElementById('permanent_post_office').value;
+  const permanent_postal_code = document.getElementById('permanent_postal_code').value;
+  const o_level_degree = document.getElementById('o_level_degree').value;
+  const o_level_group = document.getElementById('o_level_group').value;
+  const o_level_board_name = document.getElementById('o_level_board_name').value;
+  const o_gpa_with_4th = document.getElementById('o_gpa_with_4th').value;
+  const o_gpa_without_4th = document.getElementById('o_gpa_without_4th').value;
+  const o_total_marks = document.getElementById('o_total_marks').value;
+  const o_roll = document.getElementById('o_roll').value;
+  const o_registration_no = document.getElementById('o_registration_no').value;
+  const o_level_passing_year = document.getElementById('o_level_passing_year').value;
+  const a_level_degree = document.getElementById('a_level_degree').value;
+  const a_level_group = document.getElementById('a_level_group').value;
+  const a_level_board_name = document.getElementById('a_level_board_name').value;
+  const a_gpa_with_4th = document.getElementById('a_gpa_with_4th').value;
+  const a_gpa_without_4th = document.getElementById('a_gpa_without_4th').value;
+  const a_total_marks = document.getElementById('a_total_marks').value;
+  const a_roll = document.getElementById('a_roll').value;
+  const a_registration_no = document.getElementById('a_registration_no').value;
+  const a_level_passing_year = document.getElementById('a_level_passing_year').value;
+  const location_of_college = document.getElementById('location_of_college').value;
+  const degree_name = document.getElementById('degree_name').value;
+  const major = document.getElementById('major').value;
+  const other_subject = document.getElementById('other_subject').value;
+  const institute_name = document.getElementById('institute_name').value;
+  const other_institute = document.getElementById('other_institute').value;
+  const guardian_name = document.getElementById('guardian_name').value;
+  const relation_with_applicant = document.getElementById('relation_with_applicant').value;
+  const guardian_profession = document.getElementById('guardian_profession').value;
+  const guardian_mobile = document.getElementById('guardian_mobile').value;
+  const guardian_email = document.getElementById('guardian_email').value;
+  const number_of_siblings = document.getElementById('number_of_siblings').value;
+  const other_scholarship = document.getElementById('other_scholarship').value;
+
+  
   // Generate preview content
   const previewContent = `
     <h2>Personal Information</h2>
@@ -875,13 +915,85 @@ function previewImage(event) {
     <h2>Present Address</h2>
     <p><strong>present care of:</strong> ${present_care_of}</p>
     <p><strong>Village/Town/Road/House/Flat:</strong> ${present_address_line_2}</p>
-    <p><strong>District:</strong> ${present_city}</p>
-    <p><strong>Parent's Thana:</strong> ${present_thana}</p>
+    <p><strong>Present District:</strong> ${present_city}</p>
+    <p><strong>Present Thana:</strong> ${present_thana}</p>
     <p><strong>present_post_office:</strong> ${present_post_office}</p>
     <p><strong>present_postal_code:</strong> ${present_postal_code}</p>
     <p><strong>same_as_present_address:</strong> ${same_as_present_address}</p>
+    <h2>Permanent Address</h2>
+    <p><strong>permanent care of:</strong> ${permanent_care_of}</p>
+    <p><strong>Village/Town/Road/House/Flat:</strong> ${permanent_address_line_2}</p>
+    <p><strong>Permanent District:</strong> ${permanent_city}</p>
+    <p><strong>Permanent Thana:</strong> ${permanent_thana}</p>
+    <p><strong>permanent_post_office:</strong> ${permanent_post_office}</p>
+    <p><strong>permanent_postal_code:</strong> ${permanent_postal_code}</p>
+    <h2>Education Information</h2>
+    <h3>SSC Education</h3>
+    <p><strong>Degree Name:</strong> ${o_level_degree}</p>
+    <p><strong>Group:</strong> ${o_level_group}</p>
+    <p><strong>Board Name:</strong> ${o_level_board_name}</p>
+    <p><strong>GPA With 4th subject:</strong> ${o_gpa_with_4th}</p>
+    <p><strong>GPA Without 4th subject:</strong> ${o_gpa_without_4th}</p>
+    <p><strong>Total Marks:</strong> ${o_total_marks}</p>
+    <p><strong>Roll:</strong> ${o_roll}</p>
+    <p><strong>Registration No:</strong> ${o_registration_no}</p>
+    <p><strong>Passing Year:</strong> ${o_level_passing_year}</p>
+    <h3>HSC Education</h3>
+    <p><strong>Degree Name:</strong> ${a_level_degree}</p>
+    <p><strong>Group:</strong> ${a_level_group}</p>
+    <p><strong>Board Name:</strong> ${a_level_board_name}</p>
+    <p><strong>GPA With 4th subject:</strong> ${a_gpa_with_4th}</p>
+    <p><strong>GPA Without 4th subject:</strong> ${a_gpa_without_4th}</p>
+    <p><strong>Total Marks:</strong> ${a_total_marks}</p>
+    <p><strong>Roll:</strong> ${a_roll}</p>
+    <p><strong>Registration No:</strong> ${a_registration_no}</p>
+    <p><strong>Passing Year:</strong> ${a_level_passing_year}</p>
+    <p><strong>Location of College/Madrasah/Vocational(HSC Equivalent Level):</strong> ${location_of_college}</p>
+    <h2>Present Learning Institute Information</h2>
+    <p><strong>Degree Name:</strong> ${degree_name}</p>
+    <p><strong>Major / Subject:</strong> ${major}</p>
+    <p><strong>Other Major / Subject:</strong> ${other_subject}</p>
+    <p><strong>Institute Name:</strong> ${institute_name}</p>
+    <p><strong>Other Institute Name:</strong> ${other_institute}</p>
+    <h3>Guardian / Legal Guardian Information</h3>
+    <p><strong>Guardian Name:</strong> ${guardian_name}</p>
+    <p><strong>Relation With Applicant:</strong> ${relation_with_applicant}</p>
+    <p><strong>Guardian Profession:</strong> ${guardian_profession}</p>
+    <p><strong>Guardian Mobile:</strong> ${guardian_mobile}</p>
+    <p><strong>Guardian Email:</strong> ${guardian_email}</p>
+    <h3>Brother's / Sister's Information</h3>
+    <p><strong>Number of Siblings:</strong> ${number_of_siblings}</p>
+    <h3>Scholarship Information</h3>
+    <p><strong>Did you avail any Other Scholarship(Except Govt. Scholarship):</strong> ${other_scholarship}</p>
 
   `;
+  // Get the image file from the input field
+const imageInput = document.getElementById('photo_path');
+const imageFile = imageInput.files[0];
+
+if (imageFile) {
+  // Create a FileReader instance
+  const reader = new FileReader();
+
+  // Set the onload event for the reader
+  reader.onload = function (e) {
+    // Create an image element
+    const img = document.createElement('img');
+    img.src = e.target.result;
+
+    // Insert the image into the preview
+    const imagePreview = document.getElementById('imagePreview');
+    imagePreview.innerHTML = '';
+    imagePreview.appendChild(img);
+  };
+
+  // Read the image file as a data URL
+  reader.readAsDataURL(imageFile);
+} else {
+  // If no image is selected, clear the preview
+  document.getElementById('imagePreview').innerHTML = '';
+}
+
 
   // Insert preview content into the modal
   document.getElementById('previewContent').innerHTML = previewContent;
@@ -889,6 +1001,18 @@ function previewImage(event) {
   // Open the modal
   const previewModal = new bootstrap.Modal(document.getElementById('previewModal'));
   previewModal.show();
+});
+
+</script>
+<script>
+    document.getElementById('submitFromModal').addEventListener('click', function () {
+  // Close the preview modal
+  const previewModal = bootstrap.Modal.getInstance(document.getElementById('previewModal'));
+  previewModal.hide();
+
+  // Submit the form
+  const form = document.getElementById('scholarshipForm');
+  form.submit();
 });
 
 </script>
