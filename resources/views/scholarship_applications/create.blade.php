@@ -847,7 +847,13 @@ function previewImage(event) {
   const disability_type = document.getElementById('disability_type').value;
   const present_care_of = document.getElementById('present_care_of').value;
   const present_address_line_2 = document.getElementById('present_address_line_2').value;
-  const present_city = document.getElementById('present_city').value;
+  //const present_city = document.getElementById('present_city').value;
+  const presentCitySelect = document.getElementById('present_city');
+  const selectedOption = presentCitySelect.options[presentCitySelect.selectedIndex];
+  const selectedDistrictText = selectedOption.textContent || selectedOption.innerText;
+
+  //present_city = document.getElementById('selectedDistrict').innerHTML = `<p><strong>District:</strong> ${selectedDistrictText}</p>`;
+  //end
   const present_thana = document.getElementById('present_thana').value;
   const present_post_office = document.getElementById('present_post_office').value;
   const present_postal_code = document.getElementById('present_postal_code').value;
@@ -889,6 +895,11 @@ function previewImage(event) {
   const guardian_email = document.getElementById('guardian_email').value;
   const number_of_siblings = document.getElementById('number_of_siblings').value;
   const other_scholarship = document.getElementById('other_scholarship').value;
+  //const presentCitySelect = document.getElementById('present_city');
+  //const selectedOption = presentCitySelect.options[presentCitySelect.selectedIndex];
+  //const selectedDistrictText = selectedOption.textContent || selectedOption.innerText;
+
+  //present_city = document.getElementById('selectedDistrict').innerHTML = `<p><strong>District:</strong> ${selectedDistrictText}</p>`;
 
   
   // Generate preview content
@@ -915,7 +926,7 @@ function previewImage(event) {
     <h2>Present Address</h2>
     <p><strong>present care of:</strong> ${present_care_of}</p>
     <p><strong>Village/Town/Road/House/Flat:</strong> ${present_address_line_2}</p>
-    <p><strong>Present District:</strong> ${present_city}</p>
+    <p><strong>Present District:</strong> ${selectedDistrictText }</p>
     <p><strong>Present Thana:</strong> ${present_thana}</p>
     <p><strong>present_post_office:</strong> ${present_post_office}</p>
     <p><strong>present_postal_code:</strong> ${present_postal_code}</p>
