@@ -286,7 +286,13 @@
         
         <div class="form-group">
             <label for="o_level_passing_year">Passing Year</label>
-            <input type="number" class="form-control" id="o_level_passing_year" name="o_level_passing_year" required value="{{ old('o_level_passing_year') }}">
+            
+            <select class="form-control" id="o_level_passing_year" name="o_level_passing_year" required>
+                <option value="">Select</option>
+                <option value="2017" {{ old('o_level_passing_year') == '2017' ? 'selected' : '' }}>2017</option>
+                <option value="2018" {{ old('o_level_passing_year') == '2018' ? 'selected' : '' }}>2018</option>
+                <option value="2019" {{ old('o_level_passing_year') == '2019' ? 'selected' : '' }}>2019</option>
+            </select>
         </div>
 
         <h4>HSC Education</h4>
@@ -350,7 +356,12 @@
        
         <div class="form-group">
             <label for="a_level_passing_year">Passing Year</label>
-            <input type="number" class="form-control" id="a_level_passing_year" name="a_level_passing_year" required value="{{ old('a_level_passing_year') }}">
+            
+            <select class="form-control" id="a_level_passing_year" name="a_level_passing_year" required>
+                <option value="">Select</option>
+                <option value="2021" {{ old('a_level_passing_year') == '2021' ? 'selected' : '' }}>2021</option>
+                
+            </select>
         </div>
 
         <div class="form-group">
@@ -854,14 +865,28 @@ function previewImage(event) {
 
   //present_city = document.getElementById('selectedDistrict').innerHTML = `<p><strong>District:</strong> ${selectedDistrictText}</p>`;
   //end
-  const present_thana = document.getElementById('present_thana').value;
+  //const present_thana = document.getElementById('present_thana').value;
+  const presentThanaSelect = document.getElementById('present_thana');
+  const selectedThanaOption = presentThanaSelect.options[presentThanaSelect.selectedIndex];
+  const selectedThanaText = selectedThanaOption.textContent || selectedThanaOption.innerText;
+
+  //
   const present_post_office = document.getElementById('present_post_office').value;
   const present_postal_code = document.getElementById('present_postal_code').value;
   const same_as_present_address = document.getElementById('same_as_present_address').value;
   const permanent_care_of = document.getElementById('permanent_care_of').value;
   const permanent_address_line_2 = document.getElementById('permanent_address_line_2').value;
-  const permanent_city = document.getElementById('permanent_city').value;
-  const permanent_thana = document.getElementById('permanent_thana').value;
+  //const permanent_city = document.getElementById('permanent_city').value;
+  const permanentCitySelect = document.getElementById('permanent_city');
+  const selectedPermanentCityOption = permanentCitySelect.options[permanentCitySelect.selectedIndex];
+  const selectedPermanentCityText = selectedPermanentCityOption.textContent || selectedPermanentCityOption.innerText;
+
+  //
+  //const permanent_thana = document.getElementById('permanent_thana').value;
+  const permanentThanaSelect = document.getElementById('permanent_thana');
+  const selectedPermanentThanaOption = permanentThanaSelect.options[permanentThanaSelect.selectedIndex];
+  const selectedPermanentThanaText = selectedPermanentThanaOption.textContent || selectedPermanentThanaOption.innerText;
+  //
   const permanent_post_office = document.getElementById('permanent_post_office').value;
   const permanent_postal_code = document.getElementById('permanent_postal_code').value;
   const o_level_degree = document.getElementById('o_level_degree').value;
@@ -927,15 +952,15 @@ function previewImage(event) {
     <p><strong>present care of:</strong> ${present_care_of}</p>
     <p><strong>Village/Town/Road/House/Flat:</strong> ${present_address_line_2}</p>
     <p><strong>Present District:</strong> ${selectedDistrictText }</p>
-    <p><strong>Present Thana:</strong> ${present_thana}</p>
+    <p><strong>Present Thana:</strong> ${selectedThanaText}</p>
     <p><strong>present_post_office:</strong> ${present_post_office}</p>
     <p><strong>present_postal_code:</strong> ${present_postal_code}</p>
     <p><strong>same_as_present_address:</strong> ${same_as_present_address}</p>
     <h2>Permanent Address</h2>
     <p><strong>permanent care of:</strong> ${permanent_care_of}</p>
     <p><strong>Village/Town/Road/House/Flat:</strong> ${permanent_address_line_2}</p>
-    <p><strong>Permanent District:</strong> ${permanent_city}</p>
-    <p><strong>Permanent Thana:</strong> ${permanent_thana}</p>
+    <p><strong>Permanent District:</strong> ${selectedPermanentCityText}</p>
+    <p><strong>Permanent Thana:</strong> ${selectedPermanentThanaText}</p>
     <p><strong>permanent_post_office:</strong> ${permanent_post_office}</p>
     <p><strong>permanent_postal_code:</strong> ${permanent_postal_code}</p>
     <h2>Education Information</h2>
