@@ -8,6 +8,7 @@ use App\Http\Requests\ScholarshipApplicationRequest;
 use App\Mail\ScholarshipApplicationMail;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\DB;
+use GuzzleHttp\Client;
 
 class ScholarshipApplicationController extends Controller
 {
@@ -73,6 +74,14 @@ class ScholarshipApplicationController extends Controller
 	session()->flash('application_id', $scholarshipApplication->id);
 		//$scholarshipApplication = ScholarshipApplication::create($validatedData);
 		Mail::to($scholarshipApplication->email)->send(new ScholarshipApplicationMail($scholarshipApplication));
+        // Send an SMS
+        $client = new \GuzzleHttp\Client();
+        $response = $client->request('GET', 'http://172.17.16.13:8080/sms/send', [
+            'query' => [
+                'no' => $validatedData['phone_number'],
+                'msg' => 'Your Scholarship application has been received. Your application ID is: ' . $scholarshipApplication->id
+            ]
+        ]);
 		return redirect()->route('scholarship_applications.thankyou');
 	}
 
