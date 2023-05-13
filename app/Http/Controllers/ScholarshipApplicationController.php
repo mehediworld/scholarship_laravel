@@ -76,7 +76,7 @@ class ScholarshipApplicationController extends Controller
 		Mail::to($scholarshipApplication->email)->send(new ScholarshipApplicationMail($scholarshipApplication));
         // Send an SMS
         $client = new \GuzzleHttp\Client();
-        $response = $client->request('GET', 'http://172.17.16.13:8080/sms/send', [
+        $response = $client->request('GET', 'http://url:8080/sms/send', [
             'query' => [
                 'no' => $validatedData['phone_number'],
                 'msg' => 'Your Scholarship application has been received. Your application ID is: ' . $scholarshipApplication->id
